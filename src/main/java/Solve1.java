@@ -1,17 +1,17 @@
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class Solve1 {
 
   public static void main(String[] args) {
-    
+
   }
 
   public static int sum(int p1, int p2) {
-    return  p1 + p2;
+    return p1 + p2;
   }
 
   public static int sumArray(List<Integer> ar) {
@@ -42,8 +42,8 @@ public class Solve1 {
     int d1 = 0, d2 = 0, m = arr.get(0).size(), j = m - 1;
 
     for (int i = 0; i < m; i++) {
-      d1+= arr.get(i).get(i);
-      d2+= arr.get(j).get(i);
+      d1 += arr.get(i).get(i);
+      d2 += arr.get(j).get(i);
       j--;
     }
     return Math.abs(d1 - d2);
@@ -53,7 +53,7 @@ public class Solve1 {
     int positives = 0, negatives = 0, zeros = 0, size = arr.size();
 
     for (int value : arr) {
-      if(value == 0) zeros++;
+      if (value == 0) zeros++;
       else if (value > 0) positives++;
       else negatives++;
     }
@@ -67,25 +67,15 @@ public class Solve1 {
 
   public static void staircase(int n) {
     for (int value = 1; value <= n; value++) {
-      System.out.println(
-          " ".repeat(n - value).concat("#".repeat(value))
-      );
+      System.out.println(" ".repeat(n - value).concat("#".repeat(value)));
     }
 
   }
 
   public static void miniMaxSum(List<Integer> arr) {
-    long sum = arr.stream().parallel()
-        .mapToLong(x -> x)
-        .sorted()
-        .skip(1)
-        .sum();
+    long sum = arr.stream().parallel().mapToLong(x -> x).sorted().skip(1).sum();
 
-    long res = arr.stream().parallel()
-        .sorted(Comparator.reverseOrder())
-        .mapToLong(x -> x)
-        .skip(1)
-        .sum();
+    long res = arr.stream().parallel().sorted(Comparator.reverseOrder()).mapToLong(x -> x).skip(1).sum();
 
     System.out.println(res + " " + sum);
   }
